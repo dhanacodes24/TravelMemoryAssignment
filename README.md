@@ -101,7 +101,7 @@ $\textcolor{#87CEEB}{\textbf{We need Mongo DB to stores user travel memories, im
 ### 1.2 Launch and connect to the EC2 instance
 
 
-$\textcolor{#87CEEB}{\textbf{Created first EC2 instance to host Travel Memory applicationThis project is useful.}}$
+$\textcolor{#87CEEB}{\textbf{Created first EC2 instance to host Travel Memory application.}}$
 
 $\textcolor{#87CEEB}{\textbf{Launched an Ubuntu EC2 instance, opened the required security group ports ( }}$`5000`, `3001`, `80` ,`443`, and `3000` $\textcolor{#87CEEB}{\textbf{ for testing), and connected via SSH   }}$
 
@@ -268,7 +268,7 @@ npm start
 
 ### 2.1 Create additional EC2 instances
 
-$\textcolor{#87CEEB}{\textbf{ Launched a second  EC2 instance for both the frontend and backend tiers, repeatrf the setup from Tasks 1   }}$
+$\textcolor{#87CEEB}{\textbf{ Launched a second  EC2 instance for both the frontend and backend tiers, repeated the same setup as instance 1 }}$
 
 <!-- 📸 Add screenshot: Multiple EC2 instances in the console -->
 <div align="center">
