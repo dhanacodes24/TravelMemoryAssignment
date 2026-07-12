@@ -26,14 +26,15 @@
 
 ## 📑 Table of contents
 
-- [Architecture overview](#-architecture-overview)
-- [Tech stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Task 1 — Backend configuration](#-task-1--backend-configuration)
-- [Task 2 — Connecting frontend & backend](#-task-2--connecting-frontend--backend)
-- [Task 3 — Scaling with multiple instances](#-task-3--scaling-with-multiple-instances)
-- [Task 4 — Custom domain via Cloudflare](#-task-4--custom-domain-via-cloudflare)
-- [Verification & results](#-verification--results)
+$\Large{\textcolor{#87CEEB}{\textbf{Task 1 — Backend configuration}}}$
+
+$\Large{\textcolor{#87CEEB}{\textbf{Task 2 — Scaling with multiple instances}}}$
+
+$\Large{\textcolor{#87CEEB}{\textbf{Task 3 — Custom domain via Cloudflare}}}$
+
+$\Large{\textcolor{#87CEEB}{\textbf{Verification and  results}}}$
+
+
 -
 <br/>
 
@@ -45,25 +46,23 @@
 
 
 ---------------------------------------------------------
+<div align="center">
 
-The architecture diagram shows how the **Travel Memory  app** is deployed on AWS:  
+$\large{\textcolor{#87CEEB}{\textbf{How the Architecture Works}}}$
 
-- **Cloudflare DNS** routes traffic from a custom domain to AWS.  
-- An **AWS Load Balancer** distributes requests across multiple EC2 instances.  
-- **Frontend servers (React)** handle user requests, while **backend servers (Node.js)** process API calls.  
-- The backend connects to a **MongoDB database** for data storage.  
-- Auto‑scaling groups ensure high availability and scalability by adding/removing EC2 instances as needed.
+</div>
 
+> 🌐 **Cloudflare DNS** routes traffic from a custom domain to AWS.
+>
+> ⚖️ An **AWS Load Balancer** distributes requests across multiple EC2 instances.
+>
+> 🖥️ **Frontend servers (React)** handle user requests, while **backend servers (Node.js)** process API calls.
+>
+> 🗄️ The backend connects to a **MongoDB** database for data storage.
+>
+> 📈 **Auto-scaling groups** ensure high availability and scalability by adding/removing EC2 instances as needed.
 
 -----------------------------------------------------------
-
-| Layer | Responsibility |
-|---|---|
-| **Cloudflare** | DNS management, custom domain, proxy/SSL |
-| **Load Balancer** | Distributes traffic across scaled EC2 instances |
-| **Frontend tier (EC2 × N)** | Serves the React production build via Nginx on port `80` |
-| **Backend tier (EC2 × N)** | Node.js/Express API, reverse-proxied by Nginx to port `3000` |
-| **MongoDB Atlas** | Managed database used by the backend |
 
 <br/>
 
@@ -84,6 +83,14 @@ The architecture diagram shows how the **Travel Memory  app** is deployed on AWS
 
 ### 1.1 Created MongoDB : A running MongoDB Cluster (MongoDB Atlas ).
 
+<span style="color:skyblue">
+
+
+$\textcolor{#87CEEB}{\textbf{We need Mongo DB to stores user travel memories, images, and related metadata. Hence created database travelmemory in MongoDB}}$
+
+
+
+</span> 
 
 <!-- 📸 Add screenshot: EC2 instance running + security group inbound rules -->
 <div align="center">
@@ -93,7 +100,10 @@ The architecture diagram shows how the **Travel Memory  app** is deployed on AWS
 
 ### 1.2 Launch and connect to the EC2 instance
 
-Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80`, `443`, and `3000` for testing), and connect via SSH.
+
+$\textcolor{#87CEEB}{\textbf{Created first EC2 instance to host Travel Memory applicationThis project is useful.}}$
+
+$\textcolor{#87CEEB}{\textbf{Launched an Ubuntu EC2 instance, opened the required security group ports ( }}$`5000`, `3001`, `80` ,`443`, and `3000` $\textcolor{#87CEEB}{\textbf{ for testing), and connected via SSH   }}$
 
 <!-- 📸 Add screenshot: EC2 instance running + security group inbound rules -->
 <div align="center">
@@ -112,7 +122,9 @@ Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80
 
 </div>
 
-### 1.2 Clone the repository
+### 1.3 Clone the repository
+
+$\textcolor{#87CEEB}{\textbf{Cloned git repo of Travel memory application  }}$
 
 ```bash
 git clone https://github.com/UnpredictablePrashant/TravelMemory.git
@@ -121,7 +133,9 @@ cd TravelMemory/backend
 <img width="841" height="428" alt="Repo download" src="https://github.com/user-attachments/assets/c7ffcd5e-b570-4b40-9b40-a86921b3f08c" />
 
 
-### 1.3 Install dependencies
+### 1.4 Install dependencies
+
+$\textcolor{#87CEEB}{\textbf{Updated packages}}$
 
 ```bash
 sudo apt update && sudo apt install -y nodejs npm
@@ -130,13 +144,12 @@ npm install
 <img width="840" height="421" alt="Package update" src="https://github.com/user-attachments/assets/59b0342d-6660-4c48-9ed2-2ff423c1107f" />
 
 
-### 1.4 Configure environment variables
+### 1.5 Configure environment variables
 
-Create a `.env` file inside the `backend` directory:
-
+$\textcolor{#87CEEB}{\textbf{Created a}}$  `.env` $\textcolor{#87CEEB}{\textbf{file inside the}}$  `backend` $\textcolor{#87CEEB}{\textbf{directory  }}$ 
 ```env
 MONGO_URI=your_mongodb_connection_string
-PORT=3000
+PORT=3001
 ```
 
 <!-- 📸 Add screenshot: .env file (mask sensitive values) -->
@@ -146,27 +159,28 @@ PORT=3000
 
 
 -----
+$\textcolor{#87CEEB}{\textbf{Created a}}$  `.env` $\textcolor{#87CEEB}{\textbf{file inside the}}$  `frontend` $\textcolor{#87CEEB}{\textbf{directory  }}$ 
+
+```env
+REACT_APP_BACKEND_URL=http://98.94.60.254:3001
+```
 
 <div align="center">
 <img width="842" height="197" alt="env frontend" src="https://github.com/user-attachments/assets/96083754-ee32-4608-9106-31a183ac5e0c" />
 
 </div>
 
-### 1.5 Run the backend
+
+### 1.5 Configure Nginx as a reverse proxy
+
+$\textcolor{#87CEEB}{\textbf{Installed Nginx to setup reverse proxy }}$
+
+$\textcolor{#87CEEB}{\textbf{Added file travelmemeory and updated configuration as below , pointed it to new file }}$ 
 
 ```bash
-node index.js
-# or, for production process management:
-pm2 start index.js --name travelmemory-backend
+sudo ln -s /etc/nginx/sites-available/travelmemory /etc/nginx/sites-enabled/
+
 ```
-
-<!-- 📸 Add screenshot: backend running / pm2 status -->
-<div align="center">
-<img width="830" height="302" alt="Backend Up" src="https://github.com/user-attachments/assets/90fe694f-dc33-4c13-a30a-52653b104fb8" />
-
-</div>
-
-### 1.6 Configure Nginx as a reverse proxy
 
 ```nginx
 server {
@@ -184,15 +198,25 @@ server {
 }
 ```
 
+
+$\textcolor{#87CEEB}{\textbf{ Removed default file  }}$
+
+
 <div align="center">
 <img width="839" height="36" alt="nginx new file" src="https://github.com/user-attachments/assets/c6a0f85f-5c4f-481b-a638-2a8cbd90e33a" />
 
 </div>
 
+$\textcolor{#87CEEB}{\textbf{ Confirmed Nginx status  }}$
+
+
 ```bash
-sudo ln -s /etc/nginx/sites-available/travelmemory /etc/nginx/sites-enabled/
+
+
 sudo nginx -t
+
 sudo systemctl restart nginx
+
 ```
 
 <!-- 📸 Add screenshot: nginx -t success + systemctl status nginx -->
@@ -205,11 +229,46 @@ sudo systemctl restart nginx
 
 ---
 
+
+### 1.7 Run the backend
+
+$\textcolor{#87CEEB}{\textbf{ Started backend with help of below commands and confirmed that backend is up 👍   }}$
+
+```bash
+cd backend
+npm install
+node index.js
+```
+
+<!-- 📸 Add screenshot: backend running / pm2 status -->
+<div align="center">
+<img width="830" height="302" alt="Backend Up" src="https://github.com/user-attachments/assets/90fe694f-dc33-4c13-a30a-52653b104fb8" />
+
+</div>
+
+### 1.7 Run the Frontend
+
+$\textcolor{#87CEEB}{\textbf{ Started frontend with help of below commands and confirmed that frontend is up 👍   }}$
+
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+<!-- 📸 Add screenshot: backend running / pm2 status -->
+<div align="center">
+<img width="833" height="455" alt="Front_end up" src="https://github.com/user-attachments/assets/20686c47-0fd1-4d61-91ce-f79e32fca9e4" />
+</div>
+
+
+
 ## 🔗 Task 2  — Scaling with multiple instances
 
 ### 2.1 Create additional EC2 instances
 
-Launch a second (and further) EC2 instance(s) for both the frontend and backend tiers, repeating the setup from Tasks 1 & 2 on each.
+$\textcolor{#87CEEB}{\textbf{ Launched a second  EC2 instance for both the frontend and backend tiers, repeatrf the setup from Tasks 1   }}$
 
 <!-- 📸 Add screenshot: Multiple EC2 instances in the console -->
 <div align="center">
@@ -217,18 +276,20 @@ Launch a second (and further) EC2 instance(s) for both the frontend and backend 
 
 </div>
 
-### 3.2 Create target groups
+### 2.2 Create target groups
 
-Create separate target groups for the frontend tier (port `80`) and backend tier (port `3000`), and register the corresponding instances.
-
+$\textcolor{#87CEEB}{\textbf{ Created target group and registred Instance 1 and Instance 2 under this target group }}$
 <!-- 📸 Add screenshot: Target group configuration -->
 <div align="center">
 <img width="1246" height="694" alt="Untitled 8" src="https://github.com/user-attachments/assets/34a86457-07dd-40d3-aabc-342e5fcd73ca" />
 </div>
 
-### 3.3 Create and configure the Load Balancer
+### 2.3 Create and configure the Load Balancer
 
-Create an **Application Load Balancer**, attach the target groups, and configure listener rules (path-based routing if using a single ALB for both tiers).
+$\textcolor{#87CEEB}{\textbf{  Created Load Balancer and attached the target groups created in previous step  }}$
+
+------------------------------------------------------------------------------------------
+
 
 <!-- 📸 Add screenshot: ALB configuration + listener rules -->
 <div align="center">
@@ -236,12 +297,16 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 </div>
 
 
+
 <div align="center">
 <img width="891" height="479" alt="Load_Balacer2" src="https://github.com/user-attachments/assets/3697cf50-db1d-4d73-b409-802d40150255" />
 
 </div>
 
-### 3.4 Confirm healthy targets
+### 2.4 Confirm healthy targets
+
+$\textcolor{#87CEEB}{\textbf{ Confirmed that the target groups are healthy  }}$
+
 
 <!-- 📸 Add screenshot: Target group health check status = healthy -->
 <div align="center">
@@ -253,14 +318,12 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 
 ---
 
-## 🌐 Task 4 — Custom domain via Cloudflare
+## 🌐 Task 3 — Custom domain via Cloudflare
 
-### 4.1 
+### 3.1 Create the CNAME record :-
 
-### 4.2 Create the CNAME record :-
-
-Create a CNAME record pointing to the load balancer endpoint. 
-(Please node I have used hostinger instead cloudflare due to quick availability )
+$\textcolor{#87CEEB}{\textbf{  Create a CNAME record pointing to the load balancer endpoint }}$
+$\textcolor{#87CEEB}{\textbf{  (Please node I have used hostinger instead cloudflare due to quick availability )  }}$
 
 
 <!-- 📸 Add screenshot: CNAME record in Cloudflare DNS settings -->
@@ -272,6 +335,9 @@ Create a CNAME record pointing to the load balancer endpoint.
 
 
 ## 🧪 Verification & results
+
+$\textcolor{#87CEEB}{\textbf{ Checked the domain URL the live application was accessible via custom domain  }}$
+
 
 <!-- 📸 Add screenshot: Final live application accessible via custom domain -->
 <div align="center">
