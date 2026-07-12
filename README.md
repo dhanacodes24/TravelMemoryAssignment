@@ -73,9 +73,7 @@
 
 <!-- 📸 Add screenshot: EC2 instance running + security group inbound rules -->
 <div align="center">
-<img width="616" height="340" alt="Untitled drawing-2" src="https://github.com/user-attachments/assets/42dd78c9-ffb0-4f6d-9595-30b4dd645e95" />
-
-
+<img width="836" height="453" alt="Mongo DB" src="https://github.com/user-attachments/assets/448cff1e-8821-470b-b1d7-f6c0768b9b8b" />
 </div>
 
 
@@ -85,7 +83,15 @@ Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80
 
 <!-- 📸 Add screenshot: EC2 instance running + security group inbound rules -->
 <div align="center">
-<img src="./screenshots/ec2-instance-launch.png" alt="EC2 instance launch" width="700"/>
+<img width="844" height="428" alt="EC2 instance 1" src="https://github.com/user-attachments/assets/94515c9c-375c-4bc6-9de7-df9c160c3405" />
+</div>
+
+## Updated inbound Rules
+
+<div align="center">
+<img width="841" height="407" alt="inbound rules1" src="https://github.com/user-attachments/assets/cc67a82a-3164-48b6-897c-bdf94e778bb6" />
+<img width="845" height="434" alt="inbound rules2" src="https://github.com/user-attachments/assets/406c4434-e001-4e8b-9fae-6cb328776a54" />
+
 </div>
 
 ### 1.2 Clone the repository
@@ -94,6 +100,8 @@ Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80
 git clone https://github.com/UnpredictablePrashant/TravelMemory.git
 cd TravelMemory/backend
 ```
+<img width="841" height="428" alt="Repo download" src="https://github.com/user-attachments/assets/c7ffcd5e-b570-4b40-9b40-a86921b3f08c" />
+
 
 ### 1.3 Install dependencies
 
@@ -101,11 +109,8 @@ cd TravelMemory/backend
 sudo apt update && sudo apt install -y nodejs npm
 npm install
 ```
+<img width="840" height="421" alt="Package update" src="https://github.com/user-attachments/assets/59b0342d-6660-4c48-9ed2-2ff423c1107f" />
 
-<!-- 📸 Add screenshot: npm install output -->
-<div align="center">
-<img src="./screenshots/backend-npm-install.png" alt="Backend npm install" width="700"/>
-</div>
 
 ### 1.4 Configure environment variables
 
@@ -118,7 +123,9 @@ PORT=3000
 
 <!-- 📸 Add screenshot: .env file (mask sensitive values) -->
 <div align="center">
-<img src="./screenshots/backend-env-file.png" alt="Backend .env configuration" width="600"/>
+<img width="841" height="94" alt="env_backend" src="https://github.com/user-attachments/assets/31624841-a425-430f-ba51-c7b16ec241e9" />
+<img width="842" height="197" alt="env frontend" src="https://github.com/user-attachments/assets/96083754-ee32-4608-9106-31a183ac5e0c" />
+
 </div>
 
 ### 1.5 Run the backend
@@ -131,7 +138,8 @@ pm2 start index.js --name travelmemory-backend
 
 <!-- 📸 Add screenshot: backend running / pm2 status -->
 <div align="center">
-<img src="./screenshots/backend-running.png" alt="Backend server running" width="700"/>
+<img width="830" height="302" alt="Backend Up" src="https://github.com/user-attachments/assets/90fe694f-dc33-4c13-a30a-52653b104fb8" />
+
 </div>
 
 ### 1.6 Configure Nginx as a reverse proxy
@@ -152,6 +160,11 @@ server {
 }
 ```
 
+<div align="center">
+<img width="839" height="36" alt="nginx new file" src="https://github.com/user-attachments/assets/c6a0f85f-5c4f-481b-a638-2a8cbd90e33a" />
+
+</div>
+
 ```bash
 sudo ln -s /etc/nginx/sites-available/travelmemory /etc/nginx/sites-enabled/
 sudo nginx -t
@@ -160,67 +173,24 @@ sudo systemctl restart nginx
 
 <!-- 📸 Add screenshot: nginx -t success + systemctl status nginx -->
 <div align="center">
-<img src="./screenshots/nginx-reverse-proxy.png" alt="Nginx reverse proxy configuration" width="700"/>
+<img width="818" height="58" alt="Nginx status" src="https://github.com/user-attachments/assets/6374b281-6767-477d-839a-5e62d22b0240" />
+
 </div>
 
 <br/>
 
 ---
 
-## 🔗 Task 2 — Connecting frontend & backend
+## 🔗 Task 2  — Scaling with multiple instances
 
-### 2.1 Clone and configure the frontend
-
-```bash
-cd TravelMemory/frontend
-npm install
-```
-
-### 2.2 Update `urls.js`
-
-Locate `url.js` (or `urls.js`) inside the frontend `src` directory and point it to the backend's public URL / domain:
-
-```js
-export const BASE_URL = "http://your-backend-domain-or-ip:3000";
-```
-
-<!-- 📸 Add screenshot: urls.js file with updated backend URL -->
-<div align="center">
-<img src="./screenshots/frontend-urls-config.png" alt="urls.js configuration" width="700"/>
-</div>
-
-### 2.3 Build and serve the frontend
-
-```bash
-npm run build
-sudo cp -r build/* /var/www/html/
-```
-
-<!-- 📸 Add screenshot: React build output -->
-<div align="center">
-<img src="./screenshots/frontend-build.png" alt="Frontend production build" width="700"/>
-</div>
-
-### 2.4 Verify end-to-end connectivity
-
-<!-- 📸 Add screenshot: App loaded in browser, network tab showing successful API calls -->
-<div align="center">
-<img src="./screenshots/frontend-backend-connected.png" alt="Frontend successfully calling backend API" width="800"/>
-</div>
-
-<br/>
-
----
-
-## 📈 Task 3 — Scaling with multiple instances
-
-### 3.1 Create additional EC2 instances
+### 2.1 Create additional EC2 instances
 
 Launch a second (and further) EC2 instance(s) for both the frontend and backend tiers, repeating the setup from Tasks 1 & 2 on each.
 
 <!-- 📸 Add screenshot: Multiple EC2 instances in the console -->
 <div align="center">
-<img src="./screenshots/ec2-multiple-instances.png" alt="Multiple EC2 instances" width="800"/>
+<img width="872" height="440" alt="Instance 2" src="https://github.com/user-attachments/assets/36cdd709-bd27-4551-afb8-94f0fd8d5b23" />
+
 </div>
 
 ### 3.2 Create target groups
@@ -229,7 +199,7 @@ Create separate target groups for the frontend tier (port `80`) and backend tier
 
 <!-- 📸 Add screenshot: Target group configuration -->
 <div align="center">
-<img src="./screenshots/target-groups.png" alt="Load balancer target groups" width="800"/>
+<img width="1246" height="694" alt="Untitled 8" src="https://github.com/user-attachments/assets/34a86457-07dd-40d3-aabc-342e5fcd73ca" />
 </div>
 
 ### 3.3 Create and configure the Load Balancer
@@ -238,14 +208,17 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 
 <!-- 📸 Add screenshot: ALB configuration + listener rules -->
 <div align="center">
-<img src="./screenshots/load-balancer-config.png" alt="Application Load Balancer configuration" width="800"/>
+<img width="901" height="388" alt="Load_Balacer1" src="https://github.com/user-attachments/assets/45fdd821-b57a-4ab4-9638-e565e350632d" />
+<img width="901" height="388" alt="Load_Balacer1" src="https://github.com/user-attachments/assets/ef5af762-53b3-4133-8e07-44f17b9cdbb2" />
+
 </div>
 
 ### 3.4 Confirm healthy targets
 
 <!-- 📸 Add screenshot: Target group health check status = healthy -->
 <div align="center">
-<img src="./screenshots/target-health-check.png" alt="Healthy target group status" width="800"/>
+<img width="1246" height="694" alt="Untitled 8" src="https://github.com/user-attachments/assets/79d1efc3-d10f-486e-85ab-bba524342dfb" />
+
 </div>
 
 <br/>
@@ -254,12 +227,7 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 
 ## 🌐 Task 4 — Custom domain via Cloudflare
 
-### 4.1 Add the domain to Cloudflare
-
-<!-- 📸 Add screenshot: Domain added to Cloudflare dashboard -->
-<div align="center">
-<img src="./screenshots/cloudflare-domain-added.png" alt="Domain added to Cloudflare" width="800"/>
-</div>
+### 4.1 
 
 ### 4.2 Create the CNAME record
 
@@ -271,7 +239,8 @@ Point a subdomain (e.g. `api.yourdomain.com`) to the Load Balancer's DNS endpoin
 
 <!-- 📸 Add screenshot: CNAME record in Cloudflare DNS settings -->
 <div align="center">
-<img src="./screenshots/cloudflare-cname-record.png" alt="Cloudflare CNAME record" width="800"/>
+<img width="892" height="464" alt="Hostinger cname" src="https://github.com/user-attachments/assets/01f05275-e7b1-420b-a641-6581581ffc1a" />
+
 </div>
 
 ### 4.3 Create the A record
@@ -282,27 +251,13 @@ Point the root/`www` domain to the frontend EC2 instance's public IP:
 |---|---|---|---|
 | A | `@` / `www` | `<frontend-ec2-public-ip>` | Proxied |
 
-<!-- 📸 Add screenshot: A record in Cloudflare DNS settings -->
-<div align="center">
-<img src="./screenshots/cloudflare-a-record.png" alt="Cloudflare A record" width="800"/>
-</div>
-
-### 4.4 Verify SSL/TLS and propagation
-
-<!-- 📸 Add screenshot: SSL/TLS status + site loading over https -->
-<div align="center">
-<img src="./screenshots/cloudflare-ssl-live.png" alt="Live site over HTTPS via Cloudflare" width="800"/>
-</div>
-
-<br/>
-
----
 
 ## 🧪 Verification & results
 
 <!-- 📸 Add screenshot: Final live application accessible via custom domain -->
 <div align="center">
-<img src="./screenshots/final-app-live.png" alt="Final deployed application" width="850"/>
+<img width="842" height="406" alt="DNS URL" src="https://github.com/user-attachments/assets/d17d9b27-e61d-4511-a6b0-836c311f157a" />
+
 </div>
 
 - ✅ Backend reachable via Nginx reverse proxy
@@ -310,54 +265,3 @@ Point the root/`www` domain to the frontend EC2 instance's public IP:
 - ✅ Traffic distributed across multiple instances via Load Balancer
 - ✅ Application accessible via custom domain with Cloudflare DNS
 
-<br/>
-
-## 🐞 Troubleshooting
-
-<details>
-<summary><strong>502 Bad Gateway from Nginx</strong></summary>
-<br/>
-Usually means the backend (Node.js) process isn't running on the port Nginx is proxying to. Check with <code>pm2 status</code> or <code>sudo systemctl status nginx</code> and confirm the port in your <code>.env</code> matches the <code>proxy_pass</code> value.
-</details>
-
-<details>
-<summary><strong>Frontend loads but API calls fail</strong></summary>
-<br/>
-Double-check <code>urls.js</code> points to the correct backend domain/IP, and that the EC2 security group allows inbound traffic on the required port.
-</details>
-
-<details>
-<summary><strong>Target group shows unhealthy instances</strong></summary>
-<br/>
-Verify the health check path returns a 200 response, and that the instance's security group allows traffic from the load balancer's security group.
-</details>
-
-<details>
-<summary><strong>Domain not resolving after adding DNS records</strong></summary>
-<br/>
-DNS propagation can take a few minutes. Confirm records are set to "Proxied" in Cloudflare, and check nameservers are correctly pointed to Cloudflare at the registrar.
-</details>
-
-<br/>
-
-## 🎓 Learnings
-
-- Setting up Nginx as a reverse proxy for a Node.js backend
-- Connecting a React frontend to a backend across environments
-- Horizontally scaling an application using multiple EC2 instances
-- Configuring an AWS Application Load Balancer with target groups
-- Managing DNS and custom domains through Cloudflare
-
-<br/>
-
-## 📄 License
-
-This documentation is provided under the [MIT License](LICENSE). The TravelMemory application itself is © its respective author — see the [original repository](https://github.com/UnpredictablePrashant/TravelMemory).
-
-<br/>
-
-<div align="center">
-
-Made with ☕ and a lot of `systemctl restart nginx`
-
-</div>
