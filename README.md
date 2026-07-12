@@ -14,19 +14,11 @@
 [![Amazon EC2](https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)](https://aws.amazon.com/ec2/)
 [![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-![Status](https://img.shields.io/badge/status-deployed-success?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)
-
-## Architecture Diagram → 
-
-<img width="896" height="795" alt="9F11B91B-759B-4AC9-B090-EB80CF3930A7" src="https://github.com/user-attachments/assets/fb05d0bc-f611-42f1-ad41-fccbdba90e8e" />
-
 
 
 ## 📖 About this project
 
-**TravelMemory** is a MERN stack application (MongoDB, Express, React, Node.js). This repository documents how the app was deployed end-to-end on **AWS EC2**, fronted by **Nginx** as a reverse proxy, distributed across **multiple scaled instances** behind a **Load Balancer**, and served through a **custom domain via Cloudflare**.
+**TravelMemory** is a MERN stack application . This repository documents how the app was deployed end-to-end on **AWS EC2**, fronted by **Nginx** as a reverse proxy, distributed across **multiple scaled instances** behind a **Load Balancer**, and served through a **custom domain via Cloudflare**.
 
 > 🔗 Original application source: [UnpredictablePrashant/TravelMemory](https://github.com/UnpredictablePrashant/TravelMemory)
 
@@ -42,16 +34,13 @@
 - [Task 3 — Scaling with multiple instances](#-task-3--scaling-with-multiple-instances)
 - [Task 4 — Custom domain via Cloudflare](#-task-4--custom-domain-via-cloudflare)
 - [Verification & results](#-verification--results)
-- [Troubleshooting](#-troubleshooting)
-- [Learnings](#-learnings)
-- [License](#-license)
-
+-
 <br/>
 
-## 🏗 Architecture overview
+  ## Architecture Diagram → 
 
 <div align="center">
-<img src="./screenshots/architecture-diagram.svg" alt="Architecture diagram" width="900"/>
+  <img width="896" height="795" alt="9F11B91B-759B-4AC9-B090-EB80CF3930A7" src="https://github.com/user-attachments/assets/fb05d0bc-f611-42f1-ad41-fccbdba90e8e" />
 </div>
 
 | Layer | Responsibility |
@@ -64,19 +53,6 @@
 
 <br/>
 
-## 🧰 Tech stack
-
-| Category | Technology |
-|---|---|
-| Frontend | React.js |
-| Backend | Node.js, Express.js |
-| Database | MongoDB (Atlas) |
-| Web server / reverse proxy | Nginx |
-| Hosting | AWS EC2 |
-| Load balancing | AWS Application Load Balancer |
-| DNS / domain | Cloudflare |
-
-<br/>
 
 ## ✅ Prerequisites
 
@@ -92,7 +68,18 @@
 
 ## 🔧 Task 1 — Backend configuration
 
-### 1.1 Launch and connect to the EC2 instance
+### 1.1 Created MongoDB : A running MongoDB Cluster (MongoDB Atlas ).
+
+
+<!-- 📸 Add screenshot: EC2 instance running + security group inbound rules -->
+<div align="center">
+<img width="616" height="340" alt="Untitled drawing-2" src="https://github.com/user-attachments/assets/42dd78c9-ffb0-4f6d-9595-30b4dd645e95" />
+
+
+</div>
+
+
+### 1.2 Launch and connect to the EC2 instance
 
 Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80`, `443`, and `3000` for testing), and connect via SSH.
 
