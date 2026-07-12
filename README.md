@@ -43,6 +43,20 @@
   <img width="896" height="795" alt="9F11B91B-759B-4AC9-B090-EB80CF3930A7" src="https://github.com/user-attachments/assets/fb05d0bc-f611-42f1-ad41-fccbdba90e8e" />
 </div>
 
+
+---------------------------------------------------------
+
+The architecture diagram shows how the **Travel Memory  app** is deployed on AWS:  
+
+- **Cloudflare DNS** routes traffic from a custom domain to AWS.  
+- An **AWS Load Balancer** distributes requests across multiple EC2 instances.  
+- **Frontend servers (React)** handle user requests, while **backend servers (Node.js)** process API calls.  
+- The backend connects to a **MongoDB database** for data storage.  
+- Auto‑scaling groups ensure high availability and scalability by adding/removing EC2 instances as needed.
+
+
+-----------------------------------------------------------
+
 | Layer | Responsibility |
 |---|---|
 | **Cloudflare** | DNS management, custom domain, proxy/SSL |
@@ -91,7 +105,9 @@ Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80
 <div align="center">
 <img width="841" height="407" alt="inbound rules1" src="https://github.com/user-attachments/assets/cc67a82a-3164-48b6-897c-bdf94e778bb6" />
 </div>
-  div align="center">
+
+
+  <div align="center">
 <img width="845" height="434" alt="inbound rules2" src="https://github.com/user-attachments/assets/406c4434-e001-4e8b-9fae-6cb328776a54" />
 
 </div>
@@ -127,6 +143,9 @@ PORT=3000
 <div align="center">
 <img width="841" height="94" alt="env_backend" src="https://github.com/user-attachments/assets/31624841-a425-430f-ba51-c7b16ec241e9" />
 </div>
+
+
+-----
 
 <div align="center">
 <img width="842" height="197" alt="env frontend" src="https://github.com/user-attachments/assets/96083754-ee32-4608-9106-31a183ac5e0c" />
@@ -238,7 +257,11 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 
 ### 4.1 
 
-### 4.2 Create the CNAME record
+### 4.2 Create the CNAME record :-
+
+Create a CNAME record pointing to the load balancer endpoint. 
+(Please node I have used hostinger instead cloudflare due to quick availability )
+
 
 Point a subdomain (e.g. `api.yourdomain.com`) to the Load Balancer's DNS endpoint:
 
