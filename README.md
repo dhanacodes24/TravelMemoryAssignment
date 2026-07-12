@@ -2,6 +2,9 @@
 
 # ✈️ TravelMemory — MERN Stack Deployment on AWS
 
+
+
+
 ### Deploying a full-stack MERN application on EC2 with Nginx, Load Balancing & Cloudflare
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -15,13 +18,11 @@
 ![Status](https://img.shields.io/badge/status-deployed-success?style=flat-square)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)
 
-<br/>
+## Architecture Diagram → 
 
-<img src="./screenshots/architecture-diagram.svg" alt="TravelMemory deployment architecture diagram" width="850"/>
+<img width="896" height="795" alt="9F11B91B-759B-4AC9-B090-EB80CF3930A7" src="https://github.com/user-attachments/assets/fb05d0bc-f611-42f1-ad41-fccbdba90e8e" />
 
-</div>
 
-<br/>
 
 ## 📖 About this project
 
