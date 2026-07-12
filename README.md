@@ -90,6 +90,8 @@ Launch an Ubuntu EC2 instance, open the required security group ports (`22`, `80
 
 <div align="center">
 <img width="841" height="407" alt="inbound rules1" src="https://github.com/user-attachments/assets/cc67a82a-3164-48b6-897c-bdf94e778bb6" />
+</div>
+  div align="center">
 <img width="845" height="434" alt="inbound rules2" src="https://github.com/user-attachments/assets/406c4434-e001-4e8b-9fae-6cb328776a54" />
 
 </div>
@@ -124,6 +126,9 @@ PORT=3000
 <!-- 📸 Add screenshot: .env file (mask sensitive values) -->
 <div align="center">
 <img width="841" height="94" alt="env_backend" src="https://github.com/user-attachments/assets/31624841-a425-430f-ba51-c7b16ec241e9" />
+</div>
+
+<div align="center">
 <img width="842" height="197" alt="env frontend" src="https://github.com/user-attachments/assets/96083754-ee32-4608-9106-31a183ac5e0c" />
 
 </div>
@@ -209,7 +214,11 @@ Create an **Application Load Balancer**, attach the target groups, and configure
 <!-- 📸 Add screenshot: ALB configuration + listener rules -->
 <div align="center">
 <img width="901" height="388" alt="Load_Balacer1" src="https://github.com/user-attachments/assets/45fdd821-b57a-4ab4-9638-e565e350632d" />
-<img width="901" height="388" alt="Load_Balacer1" src="https://github.com/user-attachments/assets/ef5af762-53b3-4133-8e07-44f17b9cdbb2" />
+</div>
+
+
+<div align="center">
+<img width="891" height="479" alt="Load_Balacer2" src="https://github.com/user-attachments/assets/3697cf50-db1d-4d73-b409-802d40150255" />
 
 </div>
 
