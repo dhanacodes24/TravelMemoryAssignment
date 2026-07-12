@@ -263,25 +263,12 @@ Create a CNAME record pointing to the load balancer endpoint.
 (Please node I have used hostinger instead cloudflare due to quick availability )
 
 
-Point a subdomain (e.g. `api.yourdomain.com`) to the Load Balancer's DNS endpoint:
-
-| Type | Name | Target | Proxy status |
-|---|---|---|---|
-| CNAME | `api` | `your-alb-dns-name.elb.amazonaws.com` | Proxied |
-
 <!-- 📸 Add screenshot: CNAME record in Cloudflare DNS settings -->
 <div align="center">
 <img width="892" height="464" alt="Hostinger cname" src="https://github.com/user-attachments/assets/01f05275-e7b1-420b-a641-6581581ffc1a" />
 
 </div>
 
-### 4.3 Create the A record
-
-Point the root/`www` domain to the frontend EC2 instance's public IP:
-
-| Type | Name | Target | Proxy status |
-|---|---|---|---|
-| A | `@` / `www` | `<frontend-ec2-public-ip>` | Proxied |
 
 
 ## 🧪 Verification & results
@@ -292,8 +279,15 @@ Point the root/`www` domain to the frontend EC2 instance's public IP:
 
 </div>
 
-- ✅ Backend reachable via Nginx reverse proxy
-- ✅ Frontend successfully calling backend APIs
-- ✅ Traffic distributed across multiple instances via Load Balancer
-- ✅ Application accessible via custom domain with Cloudflare DNS
+------------------
 
+## Result --> 
+
+## ✅ Custom Domain Deployment Success
+
+We successfully deployed the **Travel Memory MERN application** on AWS EC2 and connected it with a **custom domain**.  
+- 🌐 Domain traffic is routed through DNS records pointing to AWS resources.  
+- ⚖️ An AWS Load Balancer distributes requests across multiple EC2 instances.  
+- 💻 React frontend and 🔧 Node.js backend communicate seamlessly.  
+- 🍃 MongoDB database integrated for persistent storage.  
+- 🚀 Application is now accessible using our customized domain name.
