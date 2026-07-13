@@ -199,6 +199,10 @@ server {
 ```
 
 
+-------
+<img width="499" height="296" alt="nginx config file" src="https://github.com/user-attachments/assets/d89e4a51-3273-4c2a-9946-113c05a45d12" />
+
+
 $\textcolor{#87CEEB}{\textbf{ Removed default file  }}$
 
 
